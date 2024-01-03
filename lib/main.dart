@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:irregular_verbs/screens/home_screen.dart';
+import 'package:irregular_verbs/screens/settings_screen.dart';
+import 'package:irregular_verbs/screens/training_screen.dart';
+import 'package:irregular_verbs/screens/verbs_list_screen.dart';
 
 void main() {
   runApp(const Application());
@@ -12,12 +15,13 @@ class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          actions: [],
-        ),
-        body: HomeScreen(),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => HomeScreen(),
+        '/training': (context) => TrainingScreen(),
+        '/verblist': (context) => VerbList(),
+        '/settings': (context) => SettingsScreen(),
+      },
     );
   }
 }
