@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:irregular_verbs/widgets/verbs_list.dart';
+
 class VerbList extends StatelessWidget {
   const VerbList({super.key});
 
@@ -7,6 +9,7 @@ class VerbList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      body: VerbsList(),
     );
   }
 }

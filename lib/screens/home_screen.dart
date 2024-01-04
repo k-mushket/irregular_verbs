@@ -17,11 +17,11 @@ class HomeScreen extends StatelessWidget {
                 child: Text('Training'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, '/verblist'),
                 child: Text('List'),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, '/settings'),
                 child: Text('Settings'),
               ),
             ],
