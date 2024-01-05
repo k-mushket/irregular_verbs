@@ -1,33 +1,62 @@
 import 'package:flutter/material.dart';
-
-import 'package:irregular_verbs/models/verb.dart';
-import 'package:irregular_verbs/services/verb_service.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
 class VerbCell extends StatefulWidget {
   final String verbForm;
 
-  const VerbCell({super.key, required this.verbForm});
+  const VerbCell({Key? key, required this.verbForm}) : super(key: key);
 
   @override
-  State<VerbCell> createState() => _VerbCellState();
+  _VerbCellState createState() => _VerbCellState();
 }
 
 class _VerbCellState extends State<VerbCell> {
-  bool _pressed = false;
+  late FlutterTts flutterTts;
+  bool _isSpeaking = false;
 
-  void pressedState() {
-    setState(() {
-      _pressed = !_pressed;
+  @override
+  void initState() {
+    super.initState();
+    flutterTts = FlutterTts();
+
+    flutterTts.setStartHandler(() {
+      setState(() {
+        _isSpeaking = true;
+      });
     });
+    flutterTts.setCompletionHandler(() {
+      setState(() {
+        _isSpeaking = false;
+      });
+    });
+    flutterTts.setErrorHandler((msg) {
+      setState(() {
+        _isSpeaking = false;
+      });
+    });
+  }
+
+  Future _speak(String text) async {
+    if (_isSpeaking) {
+      var result = await flutterTts.stop();
+      if (result == 1) setState(() => _isSpeaking = false);
+    } else {
+      var result = await flutterTts.speak(text);
+      if (result == 1) setState(() => _isSpeaking = true);
+    }
+  }
+
+  @override
+  void dispose() {
+    flutterTts.stop();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed: pressedState,
-      icon: _pressed
-          ? const Icon(Icons.volume_up)
-          : const Icon(Icons.volume_down),
+      onPressed: () => _speak(widget.verbForm),
+      icon: Icon(_isSpeaking ? Icons.volume_up : Icons.volume_down),
       label: Text(widget.verbForm),
     );
   }

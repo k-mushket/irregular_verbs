@@ -5,7 +5,7 @@ import 'package:irregular_verbs/services/verb_service.dart';
 import 'package:irregular_verbs/widgets/verb_cell.dart';
 
 class VerbsList extends StatelessWidget {
-  VerbsList({super.key});
+  const VerbsList({super.key});
 
   Future<List<String>> loadVerbForms() async {
     List<Verb> verbs = await loadVerbs();
@@ -24,13 +24,16 @@ class VerbsList extends StatelessWidget {
       future: loadVerbForms(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else if (snapshot.hasData) {
           return GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
+              childAspectRatio: 2,
+              crossAxisSpacing: 4,
+              mainAxisSpacing: 4,
             ),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
@@ -38,7 +41,7 @@ class VerbsList extends StatelessWidget {
             },
           );
         } else {
-          return Text('No data found');
+          return const Text('No data found');
         }
       },
     );
