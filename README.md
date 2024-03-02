@@ -1,16 +1,16 @@
 # irregular_verbs
 
-A new Flutter project.
+The Irregular Verbs is a mobile application designed to assist in learning the irregular verbs of the English language. Utilizing a simple yet effective approach, the app allows users to study and practice all three forms of irregular verbs through an interactive table and voice pronunciation.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **Interactive Verb Table**: Browse a list of irregular verbs in a convenient table format that includes the base form, past simple, and past participle.
 
-A few resources to get you started if this is your first Flutter project:
+- **TTS Pronunciation**: Tap on any form of the verb to hear its correct pronunciation thanks to the integrated Text-to-Speech (TTS) technology.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Simple and Intuitive Interface**: The app is designed with the user in mind, providing easy access to all features without unnecessary complications.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Technologies Used
+
+`Flutter_tts`: A package for implementing TTS functionality, allowing the pronunciation of text in various languages and voices.
